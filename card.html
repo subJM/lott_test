@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body x-ms-format-detection="none" class="no-drag"><!-- Edge -->
+   <div style="" id="main_pg">
+   
+       <script>
+       var lang = {
+       "login": "Login",
+       "logout": "Logout",
+       "signup": "Sign up",
+       "email": "Email",
+       "name": "Name",
+       "gender": "Gender",
+       "country": "Country",
+       "send": "Send",
+       "submit": "Submit",
+       "confirm": "Confirm",
+       "recive": "Recive",
+       "recipient": "Recipient",
+       "amount": "Amount",
+       "request_amount": "Request Amount",
+       "auth_number": "Auth number",
+       "copy_wallet_address": "Copy wallet address",
+       "send_auth_email": "Send Email",
+       "password": "Password",
+       "find_password": "Find Password",
+       "security_password": "Security Password",
+       "find_security_password": "Find Security Password",
+       "transaction_history": "Transaction history",
+       "withdraw": "Withdraw",
+       "deposit": "Deposit",
+       "no_history": "empty history",
+       "hold": "Hold",
+       "not_hold": "Not Hold",
+       "available_amount": "Available Amount",
+       "qrcode": "QR code",
+       "wallet_address": "Wallet address",
+       "wallet_list": "Wallet list",
+       "total_amount": "Total amount",
+       "order_amount": "order amount",
+       "withdraw_amount": "withdraw amount",
+       "lockup_amount": "lockup amount",
+       "create_wallet": "Create Wallet",
+       "save_email": "Save email",
+       "forgot_password": "Forgot your password?",
+       "forgot_security_password": "Forgot your security number?",
+       "male": "MALE",
+       "female": "FEMALE",
+       "birth_year": "Year",
+       "birth_month": "Month",
+       "birth_day": "Day",
+       "multi_wallet": "Multi Wallet",
+       "reset_password": "Please reset your password",
+       "reset_security_password": "Please reset your security password",
+       "input_email": "Please enter your email.",
+       "input_password": "Please enter a password.",
+       "input_password_match": "Please enter your password again.",
+       "input_security_password": "4 digits of security password",
+       "input_security_password_match": "Please enter security password again.",
+       "input_auth_number": "Please enter auth number[6 digits].",
+       "input_name": "Please enter your name",
+       "input_digits_4": "Please enter 4 digits number.",
+       "input_digits_6": "Please enter 6 digits number.",
+       "input_wallet_address": "Please enter wallet address",
+       "input_send_amount": "Please enter the amount to send",
+       "input_request_amount": "Please enter the requested amount.",
+       "invalid_password": "Please enter between 9 and 20 alphanumeric characters plus special characters.",
+       "invalid_email": "This email address is invalid",
+       "select_birth_year": "Please select year.",
+       "select_birth_month": "Please select month.",
+       "select_birth_day": "Please select day",
+       "select_gender": "Please select gender.",
+       "select_country": "Please select country.",
+       "invalid_coin": "It is different from the current wallet coin. <br>[Request Coin : {coin_code}]",
+       "invalid_wallet_address": "There is no wallet address for the recipient.",
+       "not_match_password": "Passwords do not match",
+       "not_match_security_password": "Security Passwords do not match",
+       "empty_wallet": "There is no wallet. Please create a wallet first.",
+       "auth_email_already_send": "Already requested an authentication number email.",
+       "copy_success": "Copying is complete.",
+       "copy_fail": "Copying is fail.",
+       "qrcode_scan_payment": "Please scan the QR and request payment",
+       "landscape_not_support": "Landscape mode is not supported.",
+       "invalid_auth_number": "Auth number is 6 digits number."
+   };
+       </script>
+       <script>
+   var app_name = 'Lott_EN';
+   var app_class = 'lott';
+   var app_id = 'Lott';
+   var app_lang = 'english';
+   </script>
+   <!-- Sidebar -->
+   <div id="mySidenav" class="sidenav">
+     <div class="sidenav-top">
+       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+       <div class="top-content">
+         <!-- <img src="/resources/img/wallet/logo_horizon.png"/> -->
+         <div class="text-center">
+           <img src="/application/views/app/lott/resources/img/img-logo-sidebar.png"/>
+         </div>
+         <div style="padding: 2vh 0 1vh;">
+           thswhdals@naver.com      </div>
+         <div class="text-left">
+           <span class="btn_logout">
+             <i class="fa fa-reply"></i>
+             &nbsp;
+             Logout        </span>
+         </div>
+       </div>
+     </div>
+     <!-- <div class="row" data-code="#">
+       <div class="col-2 p-10"><img src="/resources/img/wallet/wallet_nev.png"/></div><div class="col-10">Multi Wallet</div>
+     </div>
+     -->
+     <!--
+     <div class="row" data-code="home">
+       <div class="col-2 p-10">
+         <img src="/application/views/app/lott/resources/img/icon-side-list_off.png"/>
+       </div>
+       <div class="col-10"></div>
+     </div>
+     -->
+   
+     <div class="row" data-code="history">
+       <div class="col-2 p-10">
+         <img src="/application/views/app/lott/resources/img/icon-side-list_on.png"/>
+       </div>
+       <div class="col-10">Transaction history</div>
+     </div>
+   
+     <div class="row" data-code="send">
+       <div class="col-2 p-10">
+         <img src="/application/views/app/lott/resources/img/icon-side-send_off.png"/>
+       </div>
+       <div class="col-10">Send</div>
+     </div>
+     <div class="row" data-code="recive">
+       <div class="col-2 p-10">
+         <img src="/application/views/app/lott/resources/img/icon-side-receive_off.png"/>
+       </div>
+       <div class="col-10">Recive</div>
+     </div>
+     <!-- <div class="row" data-code="setting">
+       <div class="col-2 p-10"><img src="/resources/img/wallet/setting_nev.png"/></div><div class="col-10">설정</div>
+     </div> -->
+     <!-- <a href="#">About</a>
+     <a href="#">Services</a>
+     <a href="#">Clients</a>
+     <a href="#">Contact</a> -->
+   </div>
+   
+   <div class="nav-bar">
+     <span class="open-nav-button">&#9776;</span>
+     <span class="text-title">Transaction history</span>
+   </div>
+   
+   <!-- Dark Overlay element -->
+   <div class="overlay"></div>
+   
+   
+   <script type="text/javascript">
+   function openNav() {
+     document.getElementById("mySidenav").style.marginLeft = "0";
+     // document.getElementById("wrap").style.marginLeft = "200px";
+     // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+     $('.overlay').addClass('active');
+   }
+   
+   function closeNav() {
+     document.getElementById("mySidenav").style.marginLeft = "-65vw";
+     // document.getElementById("wrap").style.marginLeft= "0";
+     // document.body.style.backgroundColor = "white";
+     $('.overlay').removeClass('active');
+   }
+   
+   $('.sidenav .row').on('click',function(){
+     var code  = $(this).data('code');
+     // alert('nav : '+code);
+     // var target = '';
+     // switch (code) {
+     //   case "wallet":
+     //     break;
+     //   case "send":
+     //     break;
+     //   case "recive":
+     //
+     //     break;
+     //   case "history":
+     //
+     //     break;
+     //   case "setting":
+     //
+     //     break;
+     //   default:
+     // }
+   
+     // self.location.replace('/app/'+code);
+     // location.href = '/app/'+code;
+     location.href = '/app/'+app_class.toLowerCase()+'/'+code;
+   })
+   
+   $('.btn_logout').on('click',function(){
+     location.href = '/app/'+app_class.toLowerCase()+'/logout';
+   })
+   
+   var video = document.createElement("video");
+   var canvasElement, canvas, outputData;
+   
+   $(document).ready(function() {
+     var code = 'history';
+     $('.row').removeClass('active');
+     $('[data-code="'+code+'"]').addClass('active');
+   
+     canvasElement = document.getElementById("qr-canvas");
+     canvasElement.style="display:block;";
+     canvas = canvasElement.getContext("2d");
+     outputData = document.getElementById("result");
+   });
+   </script>
+   <style>
+   .history_list {
+     background: #ffffff;
+   }
+   .body-content {
+     height: calc(100vh - 17rem);
+     margin: 0 0.8rem;
+   }
+   </style>
+   <div id="wrap">
+     <div class='box bordered-box red-border box-bg-visual'>
+         <div class='box-header box-wallet top-content'>
+             <div class="wallet_card">
+               <div class="row align-items-center">
+                 <div class="col-2 pt-3">
+                   <!-- <img src="/application/views/app/lott/resources/img/img-logo-wallet.png"> -->
+                 </div>
+                 <div class="col-10 pt-3 text-right">
+                   <span class="wallet_card_balance"></span>
+                 </div>
+               </div>
+               <div class="row mt-3">
+                 <img class="wallet_card_chip" src="/resources/img/wallet/chip.png">
+                 <div class="col-12 text-right wallet_card_info"></div>
+               </div>
+               <div class="row wallet_card_bottom">
+                 <div class="p-0 wallet-address"><span class="wallet_card_address"></span></div>
+                 <div class="p-0 text-right btn_copy_address" onclick="copy_address()"><img src="/application/views/app/lott/resources/img/copy.png"/></div>
+               </div>
+             </div>
+         </div>
+         <div class="box-content body-content">
+           <div class="box-title">
+             <span class="float-left align-middle">
+               <img src="/application/views/app/lott/resources/img/icon-folder.png" style="width:18px;"/>
+               Transaction history          </span>
+           </div>
+   
+           <div class="history_content">
+               <div class="row history_list">
+               </div>
+           </div>
+         </div>
+     </div>
+   </div>  <!-- /wrap -->
+   
+   
+   <script>
+   
+     // $('.wallet_card_coin_name').on('click', function(){
+     //   $('.pop_wallet').modal('show');
+     // });
+   
+     var wallet_list;
+     var wallet_select_index = 0;
+   
+     function select_wallet(index){
+   
+         wallet_select_index = index;
+         // data = wallet_list[index];
+         // if(data.cryptoaddress == ''){
+         //   pop_alert(lang.empty_wallet);
+         //   return;
+         // }
+         //
+         // $('.wallet_card_coin_name').html('<img src="/resources/img/coin_icon/'+data.coin_code.toLowerCase()+'_icon.png"/> '+data.coin_fullname_eng+'<i class="fas fa-chevron-down"></i>');
+         // // change_wallet_card();
+         //
+         // get_wallet_history(index);
+         // $('.pop_wallet').modal('hide');
+   
+   
+   
+         var html = '';
+         var info = wallet_list[wallet_select_index];
+   
+         // if(info.cryptoaddress == ''){
+         //   pop_alert(lang.empty_wallet);
+         //   return;
+         // }
+   
+         $('.wallet_card_info *').remove();
+           html = '<div class="row"><div class="col-6 text-right p-0">'+lang.total_amount+'</div><div class="col-6 text-right p-0">'+Number(info.balance).toFixed(8)+'</div></div>';
+           html += '<div class="row"><div class="col-6 text-right p-0">'+lang.order_amount+'</div><div class="col-6 text-right p-0">'+Number(info.uncontract).toFixed(8)+'</div></div>';
+           html += '<div class="row"><div class="col-6 text-right p-0">'+lang.withdraw_amount+'</div><div class="col-6 text-right p-0">'+Number(info.withdraw).toFixed(8)+'</div></div>';
+           html += '<div class="row"><div class="col-6 text-right p-0">'+lang.lockup_amount+'</div><div class="col-6 text-right p-0">'+Number(info.lockup).toFixed(8)+'</div></div>';
+   
+         if(info.cryptoaddress == ''){
+           html = '<div class="text-center align-middle create_wallet_box" onclick="create_wallet(\''+info.coin_code+'\')">'+lang.create_wallet+'<br><img src="/resources/img/wallet/sum.png"></div>';
+           $('.wallet_card_balance').html('');
+           $('.wallet_card_address').html('');
+           $('.wallet_card_bottom').hide();
+   
+           $('.body-content.pop_send').hide();
+           $('.footer-content').hide();
+   
+           pop_alert(lang.empty_wallet);
+           // return;
+         }else{
+           $('.wallet_card_balance').html(Number(info.balance).toFixed(8) +' '+ info.coin_code);
+           $('.wallet_card_address').html(info.cryptoaddress);
+           $('.wallet_card_bottom').show();
+   
+           $('.body-content.pop_send').show();
+           $('.footer-content').show();
+   
+         }
+         get_wallet_history();
+   
+         $('.wallet_card_info').append(html);
+   
+         // $('.wallet_card_coin_name').html('<img src="/resources/img/coin_icon/'+info.coin_code.toLowerCase()+'_icon.png"/> '+info.coin_fullname_eng+'<i class="fas fa-chevron-down"></i>');
+   
+         $('.pop_wallet').modal('hide');
+     }
+   
+     function draw_wallet_list_pop(data){
+       wallet_list = data;
+       select_wallet(wallet_select_index);
+   
+       // $('.wallet_items *').remove();
+       $('.pop_wallet_list *').remove();
+   
+       $.each(data, function(index, item){
+         var wallet_hold = lang.not_hold;
+         var hold_style = 'hold_off';
+   
+         var icon_url = '/resources/img/coin_icon/'+item.coin_code.toLowerCase()+'_icon.png';
+         if(item.cryptoaddress != ""){
+           wallet_hold = lang.hold;
+           hold_style = 'hold_on';
+         }
+   
+         var html = '<div class="col-12" onclick="select_wallet(\''+index+'\')"><div class="row">';
+             html += '<div class="col-6" style="margin:auto;">';
+             html += '<div class="float-left align-middle"><img src="'+icon_url+'"/></div><div class="float-left align-middle"><div>'+item.coin_fullname_eng+'</div><div>'+item.coin_code+'</div></div></span>';
+             html += '</div>';
+             html += '<div class="col-6 text-right" style="padding-top: 3px;"><div class="wallet_hold '+hold_style+' align-middle text-center">'+wallet_hold+'</div><div>'+ Number(item.balance).toFixed(8)+'</div>';
+             html += '</div></div></div>';
+         // $('.wallet_items').append(html);
+   
+         $('.pop_wallet_list').append(html);
+       });
+       // $('.pop_wallet').modal('show');
+     }
+   
+     // function get_wallet_list(){
+     //   $("div.spanner").addClass("show");
+     //   $("div.overlay").addClass("show");
+     //
+     //     var data = {};
+     //
+     //     // ax_post('/api/wallet/wallet_list', data, function(ret) {
+     //     data.symbol = 'USFCX';
+     //     app_post('/api/wallet/get_wallet_info', data, function(ret) {
+     //
+     //       $("div.spanner").removeClass("show");
+     //       $("div.overlay").removeClass("show");
+     //
+     //       if(ret.RESULT_CODE == '0') {
+     //         // draw_wallet_list_pop(ret.RESULT_DATA);
+     //
+     //         var wallet_info = new Array();
+     //         wallet_info[0] = ret.RESULT_DATA;
+     //         wallet_info[0].coin_code = 'USFCX';
+     //
+     //         draw_wallet_list_pop(wallet_info);
+     //
+     //       } else {
+     //         pop_alert(ret.RESULT_MESSAGE);
+     //       }
+     //
+     //     });
+     // }
+   
+     $(document).ready(function() {
+       // get_wallet_list();
+       get_wallet_info(draw_wallet_list_pop);
+     });
+   
+   
+   </script>
+   </div>
+   <!-- <div id="footer">
+   </div> -->
+   
+   <input type="text" class="copy_hidden_input" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; margin: 0; padding: 0; border: 0;">
+   
+   <div id="modal_default" class="modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">LOTT</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <div class="modal_default_message"></div>
+               </div>
+               <div class="modal-footer btn btn-navy" onclick='javascript:$("#modal_default").modal("hide");'>
+                   <div style="margin:auto;color:#ffffff">Confirm</div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <script>
+     function pop_alert(content, callback){
+       $('.modal_default_message *').remove();
+       $('.modal_default_message').html(content);
+       $('#modal_default').modal('show');
+   
+       if (typeof callback === "function") {
+         // console.log('callback load');
+         callback();
+       }
+     }
+   </script>
+   
+   
+   <!-- 비밀번호 찾기 -->
+   <div id="modal_findpassword" class="find_password modal fade" tabindex="-1">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">Find Password</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                     <span class="input-group-text">@</span>
+                   </div>
+                   <input type="email" class="form-control find_password_email" name="find_password_email" id="find_password_email" placeholder="Please enter your email." required>
+                   <div class="input-group-append">
+                     <!-- <button class="btn btn-outline-primary" type="submit">인증 보내기</button> -->
+                     <div class="btn btn-outline-primary send_auth_email" onclick="send_auth_email('find_password')">Send Email</div>
+                   </div>
+                 </div>
+   
+                 <div class="box-content" style="display:none;">
+                   <!-- 인증번호를 입력해주세요. -->
+                   <div class="input-group mb-3">
+                     <!-- <input type="number" class="form-control auth_email_num" maxlength="6" placeholder="Please enter auth number[6 digits]."> -->
+                     <input type="number" pattern="[0-9]*"  inputmode="numeric" class="form-control security-number auth_email_num" maxlength="6" placeholder="Please enter auth number[6 digits].">
+                   </div>
+   
+                   <h6 class="modal-title" style="padding:10px 0;">Please enter a password.</h6>
+   
+                   <!-- 패스워드를 입력해주세요.
+                   패스워드를 다시 입력해주세요. -->
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fas fa-key"></i></span>
+                     </div>
+                     <input type="password" class="form-control user_password" maxlength="20" placeholder="Please enter a password.">
+                   </div>
+   
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fas fa-key"></i></span>
+                     </div>
+                     <input type="password" class="form-control user_password_re" maxlength="20" placeholder="Please enter your password again." >
+                   </div>
+   
+                   <div class="" onclick="find_password_submit()" style="border-radius: 10px; color: #fff; background-color: #894ae9; display: flex; align-items: center; justify-content: center; height: 40px; margin: 40px auto 0; font-size: 16px; text-align: center;">
+                     <span style="color: white;">Submit</span>
+                   </div>
+                 </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <!-- 보안 비밀번호 찾기 -->
+   <div id="modal_find_auth_password" class="find_auth_password modal fade" tabindex="-1">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">Find Security Password</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <div class="input-group mb-3">
+                   <div class="input-group-prepend">
+                     <span class="input-group-text">@</span>
+                   </div>
+                   <input type="email" class="form-control find_auth_password_email" name="find_auth_password_email" id="find_auth_password_email" placeholder="Please enter your email.">
+                   <div class="input-group-append">
+                     <!-- <button class="btn btn-outline-primary" type="submit">인증 보내기</button> -->
+                     <div class="btn btn-outline-primary" onclick="send_auth_email('find_auth_password')">Send Email</div>
+                   </div>
+                 </div>
+   
+                 <div class="box-content" style="display:none;">
+                   <!-- 인증번호를 입력해주세요. -->
+                   <div class="input-group mb-3">
+                     <!-- <input type="number" class="form-control auth_email_num" maxlength="6" placeholder="Please enter auth number[6 digits]."> -->
+                     <input type="number" pattern="[0-9]*"  inputmode="numeric" class="form-control security-number auth_email_num" maxlength="6" placeholder="Please enter auth number[6 digits].">
+                   </div>
+   
+                   <h6 class="modal-title" style="padding:10px 0;">STEP 1 > Please enter a password.</h6>
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fas fa-key"></i></span>
+                     </div>
+                     <input type="password" class="form-control user_password" maxlength="20" placeholder="Please enter a password.">
+                   </div>
+   
+                   <h6 class="modal-title" style="padding:10px 0;">STEP 2 > 4 digits of security password</h6>
+   
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fas fa-key"></i></span>
+                     </div>
+                     <input type="password" class="form-control auth_password" maxlength="4" placeholder="4 digits of security password">
+                   </div>
+   
+                   <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="fas fa-key"></i></span>
+                     </div>
+                     <input type="password" class="form-control auth_password_re" maxlength="4" placeholder="Please enter security password again." >
+                   </div>
+   
+                   <div class="" onclick="find_auth_password_submit()" style="border-radius: 10px; color: #fff; background-color: #894ae9; display: flex; align-items: center; justify-content: center; height: 40px; margin: 40px auto 0; font-size: 16px; text-align: center;">
+                     <span style="color: white;">Submit</span>
+                   </div>
+                 </div>
+   
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <!-- Modal HTML -->
+   <div id="modal_password" class="modal_password modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">Security Password</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                   <input type="number" pattern="[0-9]*"  inputmode="numeric" maxlength="4" class="form-control security-number" name="login_auth_password" id="login_auth_password" placeholder="4 digits of security password">
+               </div>
+               <div class="modal-footer p-0" id="btn_login">
+                 <button type="submit" class='btn btn-block btn-navy btn-lg m-0 rounded-0'>Submit</button>
+                   <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <!-- popup Send  -->
+   <div id="pop_send" class="pop_send modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title pop_send_title">lott</h5>
+                   <button type="button" class="close" data-dismiss="modal" style="padding-top:25px;">&times;</button>
+               </div>
+               <div class="modal-body" style="padding: 0 0.8rem; ">
+                 <!-- font-size:14px; -->
+                 <div class="box-container">
+                   <div class="row box-title-text" style="padding:5px 0;">Recipient</div>
+                   <div class="row" style=" padding:5px 0;">
+                     <input type="text" class="form-control rounded-pill" name="pop_send_address" id="pop_send_address" style="width:calc(100% - 70px); " placeholder="Please enter wallet address"/>
+                     <img src="/application/views/app/lott/resources/img/img-icon-qrcode.png" class="pop_send_qrscan ml-2" style="width:38px;"/>
+                   </div>
+                 </div>
+   
+                 <div class="box-container">
+                   <div class="row box-title-text" style=" padding:5px 0;">Amount</div>
+                   <div class="row" style=" padding:5px 0;">
+                      <input type="number" class="form-control rounded-pill" name="pop_send_qty" id="pop_send_qty" style="width:100%; " placeholder="Please enter the amount to send"/>
+                    </div>
+                   <div class="row text-center" style=" padding:5px 0;">
+                      <div class="btn_plus_qty" data-qty="100">+100</div>
+                      <div class="btn_plus_qty_space"></div>
+                      <div class="btn_plus_qty" data-qty="1000">+1,000</div>
+                      <div class="btn_plus_qty_space"></div>
+                      <div class="btn_plus_qty" data-qty="10000">+10,000</div>
+                    </div>
+                 </div>
+               </div>
+               <div class="modal-footer btn btn-navy rounded-pill m-2" onclick='pop_send_submit()'>
+                   <div style="margin:auto;color:#ffffff">Send</div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- popup Send  END -->
+   
+   <!-- popup Recive  -->
+   <div id="pop_recive" class="pop_recive modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title pop_recive_title">lott</h5>
+                   <button type="button" class="close" data-dismiss="modal" style="padding-top:25px;">&times;</button>
+               </div>
+               <div class="modal-body" style="padding:0 0.8rem;">
+                 <div class="box-container">
+                   <div class="row box-title-text" style="padding:5px 0;">Wallet address</div>
+                   <div class="row" style="width: 100%;">
+                     <div class="qr_code">
+                       <div class="address_qr"></div>
+                       <div class="address_text"></div>
+                     </div>
+                   </div>
+                 </div>
+   
+                 <div class="box-container">
+                   <div class="row box-title-text" style="padding:5px 0;">Request Amount</div>
+                   <div class="row" style=" padding:5px 0;">
+                      <input type="number" class="form-control rounded-pill" name="pop_recive_qty" id="pop_recive_qty" style="width:100%; " placeholder="Please enter the requested amount."/>
+                    </div>
+                   <div class="row text-center" style=" padding:5px 0;">
+                      <div class="btn_plus_qty" data-qty="100">+100</div>
+                      <div class="btn_plus_qty_space"></div>
+                      <div class="btn_plus_qty" data-qty="1000">+1,000</div>
+                      <div class="btn_plus_qty_space"></div>
+                      <div class="btn_plus_qty" data-qty="10000">+10,000</div>
+                    </div>
+                 </div>
+   
+               </div>
+               <div class="modal-footer btn btn-navy rounded-pill m-2" onclick='pop_recive_submit()'>
+                   <div style="margin:auto;color:#ffffff">Recive</div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- popup Recive  END -->
+   
+   <!-- popup QR code  -->
+   <div id="pop_qrcode" class="pop_qrcode modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title pop_grcode_title">lott</h5>
+                   <button type="button" class="close" data-dismiss="modal" style="padding-top:25px;">&times;</button>
+               </div>
+               <div class="modal-body" style="padding:0px; ">
+                 <div class="row" style="width: 80%; margin: 0 auto;">
+                   <div class="qr_code">
+                     <div class="address_qr"></div>
+                     <div class="address_text"></div>
+                   </div>
+                 </div>
+               </div>
+               <div class="modal-footer btn btn-navy rounded-0" onclick="copy_address()">
+                   <div style="margin:auto;color:#ffffff">Copy wallet address</div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- popup QR code  END -->
+   
+   <!-- popup history -->
+   <div id="pop_history" class="pop_history modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title pop_history_title">lott</h5>
+                   <button type="button" class="close" data-dismiss="modal" style="padding-top:25px;">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <!-- <div class="row " style="width: 80%; margin: 0 auto;"></div> -->
+                 <!-- <div class="row" style=""> -->
+                   <div class="history_list">
+                   </div>
+                 <!-- </div> -->
+               </div>
+   
+           </div>
+       </div>
+   </div>
+   <!-- popup history END-->
+   
+   <!-- popup wallet END-->
+   <div id="pop_wallet" class="modal fade pop_wallet" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">LOTT</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <div class="pop_wallet_list"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- popup wallet END-->
+   
+   <!-- QR Code Scan pop -->
+   <!-- <div class="qrcode_scan_mask">
+     <div class="qrcode_scan">
+       <canvas id="qr-canvas" width="800" height="600" style="display:none;"></canvas>
+     </div>
+     <div id="result" style="margin-top: 150px; font-size: 32px; font-weight: bold; color: purple;"></div>
+   </div> -->
+   
+   <div id="qrcode_scan_mask" class="modal fade qrcode_scan_mask" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">LOTT</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <div class="embed-responsive embed-responsive-1by1 qrcode_scan">
+                   <div class="embed-responsive-item">
+                     <canvas id="qr-canvas" width="100%" height="100%" style="display:none;"></canvas>
+                   </div>
+                 </div>
+                 <div id="result" style="margin-top: 0px; font-size: 32px; font-weight: bold; color: purple;"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- QR Code Scan pop END-->
+   
+   <!-- popup notice -->
+   <script>
+     function hideNoticePopup() {
+       $('#popup_notice').modal('hide');
+       var today = '20220118';
+       setCookie('notice'+today);
+     }
+   </script>
+   
+   <div id="popup_notice" class="modal fade" tabindex="-1">
+       <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">LOTT 공지사항</h5>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                <div>
+                 LOTT 월렛을 이용하시는 회원분들께 공지 올립니다.<br>
+                   ISMS 심사로 인한 월렛 서비스를 일시 중지됩니다.<br><br>
+                   <span style="font-weight: bold;">기간 : 01/10 12:00 ~ 01/14 12:00</span><br><br>
+                   안전한 거래를 위한 과정이오니 불편하시더라도 양해를 부탁드립니다.<br>
+                </div>
+                 <div onclick="hideNoticePopup()" style="text-decoration: underline; margin-top: 20px; text-align: center;">오늘 하루 보지않기</div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- popup notice END -->
+   
+   <style>
+   .spanner{
+     position: fixed;
+     top: 50vh;
+     /* top: 0; */
+     left: 0;
+     background: #2a2a2a55;
+     width: 100vw;
+     /* display:none; */
+     text-align:center;
+     height: 100vh;
+     color: #FFF;
+     transform: translateY(-50%);
+     z-index: 2020;
+     visibility: hidden;
+   }
+   /*
+   .overlay{
+     position: fixed;
+      width: 100vw;
+      height: 100vh;
+     background: rgba(0,0,0,0.5);
+     visibility: hidden;
+   } */
+   /*
+   .loader,
+   .loader:before,
+   .loader:after {
+     border-radius: 50%;
+     width: 2.5em;
+     height: 2.5em;
+     -webkit-animation-fill-mode: both;
+     animation-fill-mode: both;
+     -webkit-animation: load7 1.8s infinite ease-in-out;
+     animation: load7 1.8s infinite ease-in-out;
+   }
+   .loader {
+     color: #ffffff;
+     font-size: 10px;
+     margin: 50vh auto;
+     position: relative;
+     text-indent: -9999em;
+     -webkit-transform: translateZ(0);
+     -ms-transform: translateZ(0);
+     transform: translateZ(0);
+     -webkit-animation-delay: -0.16s;
+     animation-delay: -0.16s;
+     height: 0px;
+   }
+   .loader:before,
+   .loader:after {
+     content: '';
+     position: absolute;
+     top: 0;
+   }
+   .loader:before {
+     left: -3.5em;
+     -webkit-animation-delay: -0.32s;
+     animation-delay: -0.32s;
+   }
+   .loader:after {
+     left: 3.5em;
+   }
+   @-webkit-keyframes load7 {
+     0%,
+     80%,
+     100% {
+       box-shadow: 0 2.5em 0 -1.3em;
+     }
+     40% {
+       box-shadow: 0 2.5em 0 0;
+     }
+   }
+   @keyframes load7 {
+     0%,
+     80%,
+     100% {
+       box-shadow: 0 2.5em 0 -1.3em;
+     }
+     40% {
+       box-shadow: 0 2.5em 0 0;
+     }
+   } */
+   
+   .show{
+     visibility: visible;
+   }
+   
+   .spanner, .overlay{
+      opacity: 0;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+   }
+   
+   .spanner.show, .overlay.show {
+      opacity: 1
+   }
+   </style>
+   <!-- <div class="overlay"></div> -->
+   <div class="spanner">
+   <!-- <div class="spinner-border"> -->
+   
+     <!-- <div class="loader"></div> -->
+     <!-- <p>Uploading music file, please be patient.</p> -->
+     <div class="spinner-border" style="margin: 50vh auto;"></div>
+   
+   </div>
+   
+   
+   </body>
+</html>

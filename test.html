@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+.contents-wrap {
+   min-height:100%;
+   position:relative;
+   padding-bottom:100px;/* footer height */
+}
+.footer {
+   width:100%;
+   height:100px;
+   position:absolute;
+   bottom:0;
+   background:#5eaeff;
+  text-align: center;
+  color: white;
+}
+   </style>
+</head>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" type="text/css"  href="/resources/css/common.css">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<sitemesh:write property='head' />
+<!-- CSS -->
+<link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+     <div class="container contents-wrap">
+           <div class="row">
+                <div class="top-menu-list pull-right">
+                     <c:choose>
+                           <c:when test="${not empty  userVO.id}">
+                                ${userVO.name} 님 환영합니다
+                                <span  id="user-logout-button">로그아웃</span>
+                                
+                                
+                           </c:when>
+                           <c:otherwise>              
+                                <a  href="/user/loginForm">로그인</a>
+                                <a  href="/user/createUserForm">회원가입</a>
+                           </c:otherwise>
+                     </c:choose>
+                </div>
+           </div>
+           
+           <div class="row constants-top-menu">
+                <div class="col-md-3 col-xs-3"><a  href="/main">메인화면</a></div>
+                <div class="col-md-3 col-xs-3"><a  href="/board/list?page=1&count=10">게시판1</a></div>
+                <div class="col-md-3 col-xs-3">게시판2</div>
+                <div class="col-md-3 col-xs-3">게시판3</div>
+           </div>
+           
+           <sitemesh:write property='body' />
+           <footer class="footer">
+                <div>Basic Board</div>
+                <div>@ 2019 wonhui Park</div>
+                <i class="fab fa-java fa-2x"></i><i class="fab  fa-html5 fa-2x"></i><i class="fab fa-github-alt fa-2x"></i>
+           </footer>
+     </div>
+     <script type="text/javascript"  src="/resources/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<title>Document</title>
+
+	<style>
+		body {
+			/* border: solid 1px red; */
+         box-sizing: border-box;
+			width: 100%;
+         min-width: 320px;
+         height: 100%;
+         min-height: 100%;
+			margin: auto;
+       
+		}
+      
+      #container{
+         /* border: solid 1px wheat; */
+         height: 100vh;
+         padding: 15px;
+      }
+
+      #Setting {
+         /* border: solid 1px black; */
+         text-align : center;
+         margin-top: 20px;
+         margin-bottom: 20px;
+      }
+
+      #Privacy {
+         /* border: solid 1px black; */
+         /* height: 50vh; */
+         max-height: 65vh;
+      }
+      #Privacy_item {
+         /* border: solid 1px black; */
+         width: auto;
+         text-align: center;
+         font-size: 16px;
+         font-weight: bold;
+         padding: 5px;
+      }
+
+      #logout_btn {
+         /* border: solid 1px black; */
+         height: 15vh;
+         margin: 50px;
+         text-align: center;
+      }
+
+
+	</style>
+</head>
+<body>
+	<div class="container-md" id="container">
+  
+      <div class="row justify-content-between" >
+         <div class="col">
+            <img src="./img/BackButton.png" alt="" srcset="">
+         </div>
+      </div>
+      
+      <div class="row">
+         <div class="col" id="Setting">
+            <h1>Setting</h1>
+         </div>
+      </div>
+
+      <div id="Privacy">
+         <div class="container" id="Privacy_item" >
+            <div class="row align-items-center">
+               <div class="col-auto me-auto"  >
+                 <img src="./img/profile.jpg" > profile
+               </div>
+               <div class="col-auto" >
+                 <img src="./img/arrow.svg" alt="" srcset="">
+               </div>
+             </div>
+         </div>
+
+         <div id="Privacy_item">
+             <div class="row align-items-center">
+               <div class="col-auto me-auto">
+                  <img src="./img/notification.jpg" > Notifications
+               </div>
+               <div class="col-auto">
+                  <img src="./img/arrow.svg" alt="" srcset="">
+               </div>
+             </div>
+         </div>
+         <div id="Privacy_item">
+             <div class="row align-items-center">
+               <div class="col-auto me-auto">
+                  <img src="./img/wallet.jpg" >Your Wallet
+               </div>
+               <div class="col-auto">
+                  <img src="./img/arrow.svg" alt="" srcset="">
+               </div>
+             </div>
+         </div>
+         <div id="Privacy_item">
+             <div class="row align-items-center">
+               <div class="col-auto me-auto">
+                  <img src="./img/service.jpg" > Service center
+               </div>
+               <div class="col-auto">
+                  <img src="./img/arrow.svg" alt="" srcset="">
+               </div>
+             </div>
+         </div>
+      </div>
+
+      <div class="row align-items-center" id="logout_btn">
+         <div class="col">
+            <img src="./img/logout.jpg" alt="">
+            
+         </div>
+         <div>
+            <img src="./img/logout2.jpg" alt="">
+         </div>
+      </div>
+
+   </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
