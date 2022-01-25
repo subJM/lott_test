@@ -10,7 +10,25 @@
 
 	<style>
       #container{
-         border: solid 1px wheat;
+         /* border: solid 1px wheat; */
+      }
+      
+      #logo {
+         /* border: solid 1px wheat; */
+         float: left;
+         width: 50px; 
+         margin-right: 8px;
+      }
+      #user_login{
+         /* border: black 1px; */
+         float: left;
+         font-size: 14px;
+         font-weight: bold;
+      }
+      #top_menu{
+         /* border: solid 1px black; */
+         display: flex;
+         align-items: center;
       }
 
          /*카드*/
@@ -30,10 +48,12 @@
       }
       #card{
          /* border: solid 1px black; */
-         max-width: 520px;
-         max-height: 260px;
+         width: 80%;
+         max-width: 400px;
+         max-height: 200px;
+         height: 170px;
          margin: auto;
-         background-image: url(./img/card1.svg);
+         background-image: url(./img/card.jpg);
          background-size: contain;
          background-position: center;
          background-repeat: no-repeat; 
@@ -46,7 +66,7 @@
          /* border: solid 1px black; */
          text-align: right; 
          font-weight: bolder; 
-         font-size: 1.6em; 
+         font-size: 1.2em; 
          color: white;
          
       }
@@ -54,12 +74,12 @@
          /* border: solid 1px black; */
          text-align: center; 
          font-weight: bolder; 
-         font-size: 1.6em; 
+         font-size: 1.2em; 
          color: white;
       }
       /* 중앙 버튼 */
       #button-group{
-         margin-top: 10px;
+         /* margin-top: 10px; */
       }
       /* 히스토리단어 */
       #Transaction_history{
@@ -75,28 +95,28 @@
          /* border: solid 1px black;  */
          width: auto;
          max-height: 65vh;
-         overflow-y: auto;
+         overflow-y: hidden;
          -ms-overflow-style: none;
       }
 
       #history {
-         border: solid 1px black;
+         /* border: solid 1px black; */
          padding: auto;
          margin-top: 10px;
       }
 
       #history_item::-webkit-scrollbar{ display:none; }
 
-      #item {  
-         margin: 5px;
-         border: solid 1px black;
+      #transaction_item {  
+         margin: 10px;
+         /* border: solid 1px black; */
          height: 50px;
          
       }
       #coin_name{
          /* border: solid 1px blue; */
          font-weight: bold;
-         font-size: 18px;
+         font-size: 13px;
          float: left;
       }
       #transaction_amount{
@@ -105,7 +125,7 @@
       }
       #transaction_date{
          /* border: solid 1px blue; */
-         font-size: 14px;
+         font-size: 12px;
          font-weight: lighter;
          color: darkgrey;
       }
@@ -113,28 +133,184 @@
       /* 바텀메뉴 */
       #footer{
          /* border: solid 1px blue; */
+         border-top: solid 1px rgb(211, 209, 209);
          /* height: 50px; */
          position:absolute;
          bottom:0;
          left: 0;
          right: 0;
          text-align: center;
-         background-color: wheat;
+         background-color: rgb(255, 255, 255);
+         
       }
       #bottom{
-         border: solid 1px black;
+         /* border: solid 1px black; */
          text-align: center;
       }
 	</style>
+   <script>
+
+  // $('.wallet_card_coin_name').on('click', function(){
+  //   $('.pop_wallet').modal('show');
+  // });
+
+  var wallet_list;
+  var wallet_select_index = 0;
+
+  function select_wallet(index){
+
+      wallet_select_index = index;
+      // data = wallet_list[index];
+      // if(data.cryptoaddress == ''){
+      //   pop_alert(lang.empty_wallet);
+      //   return;
+      // }
+      //
+      // $('.wallet_card_coin_name').html('<img src="/resources/img/coin_icon/'+data.coin_code.toLowerCase()+'_icon.png"/> '+data.coin_fullname_eng+'<i class="fas fa-chevron-down"></i>');
+      // // change_wallet_card();
+      //
+      // get_wallet_history(index);
+      // $('.pop_wallet').modal('hide');
+
+
+
+      var html = '';
+      var info = wallet_list[wallet_select_index];
+
+      // if(info.cryptoaddress == ''){
+      //   pop_alert(lang.empty_wallet);
+      //   return;
+      // }
+
+      $('.wallet_card_info *').remove();
+        html = '<div class="row"><div class="col-6 text-right p-0">'+lang.total_amount+'</div><div class="col-6 text-right p-0">'+Number(info.balance).toFixed(8)+'</div></div>';
+        html += '<div class="row"><div class="col-6 text-right p-0">'+lang.order_amount+'</div><div class="col-6 text-right p-0">'+Number(info.uncontract).toFixed(8)+'</div></div>';
+        html += '<div class="row"><div class="col-6 text-right p-0">'+lang.withdraw_amount+'</div><div class="col-6 text-right p-0">'+Number(info.withdraw).toFixed(8)+'</div></div>';
+        html += '<div class="row"><div class="col-6 text-right p-0">'+lang.lockup_amount+'</div><div class="col-6 text-right p-0">'+Number(info.lockup).toFixed(8)+'</div></div>';
+
+      if(info.cryptoaddress == ''){
+        html = '<div class="text-center align-middle create_wallet_box" onclick="create_wallet(\''+info.coin_code+'\')">'+lang.create_wallet+'<br><img src="/resources/img/wallet/sum.png"></div>';
+        $('.wallet_card_balance').html('');
+        $('.wallet_card_address').html('');
+        $('.wallet_card_bottom').hide();
+
+        $('.body-content.pop_send').hide();
+        $('.footer-content').hide();
+
+        pop_alert(lang.empty_wallet);
+        // return;
+      }else{
+        $('.wallet_card_balance').html(Number(info.balance).toFixed(8) +' '+ info.coin_code);
+        $('.wallet_card_address').html(info.cryptoaddress);
+        $('.wallet_card_bottom').show();
+
+        $('.body-content.pop_send').show();
+        $('.footer-content').show();
+
+      }
+      get_wallet_history();
+
+      $('.wallet_card_info').append(html);
+
+      // $('.wallet_card_coin_name').html('<img src="/resources/img/coin_icon/'+info.coin_code.toLowerCase()+'_icon.png"/> '+info.coin_fullname_eng+'<i class="fas fa-chevron-down"></i>');
+
+      $('.pop_wallet').modal('hide');
+  }
+
+  function draw_wallet_list_pop(data){
+    wallet_list = data;
+    select_wallet(wallet_select_index);
+
+    // $('.wallet_items *').remove();
+    $('.pop_wallet_list *').remove();
+
+    $.each(data, function(index, item){
+      var wallet_hold = lang.not_hold;
+      var hold_style = 'hold_off';
+
+      var icon_url = '/resources/img/coin_icon/'+item.coin_code.toLowerCase()+'_icon.png';
+      if(item.cryptoaddress != ""){
+        wallet_hold = lang.hold;
+        hold_style = 'hold_on';
+      }
+
+      var html = '<div class="col-12" onclick="select_wallet(\''+index+'\')"><div class="row">';
+          html += '<div class="col-6" style="margin:auto;">';
+          html += '<div class="float-left align-middle"><img src="'+icon_url+'"/></div><div class="float-left align-middle"><div>'+item.coin_fullname_eng+'</div><div>'+item.coin_code+'</div></div></span>';
+          html += '</div>';
+          html += '<div class="col-6 text-right" style="padding-top: 3px;"><div class="wallet_hold '+hold_style+' align-middle text-center">'+wallet_hold+'</div><div>'+ Number(item.balance).toFixed(8)+'</div>';
+          html += '</div></div></div>';
+      // $('.wallet_items').append(html);
+
+      $('.pop_wallet_list').append(html);
+    });
+    // $('.pop_wallet').modal('show');
+  }
+
+  // function get_wallet_list(){
+  //   $("div.spanner").addClass("show");
+  //   $("div.overlay").addClass("show");
+  //
+  //     var data = {};
+  //
+  //     // ax_post('/api/wallet/wallet_list', data, function(ret) {
+  //     data.symbol = 'USFCX';
+  //     app_post('/api/wallet/get_wallet_info', data, function(ret) {
+  //
+  //       $("div.spanner").removeClass("show");
+  //       $("div.overlay").removeClass("show");
+  //
+  //       if(ret.RESULT_CODE == '0') {
+  //         // draw_wallet_list_pop(ret.RESULT_DATA);
+  //
+  //         var wallet_info = new Array();
+  //         wallet_info[0] = ret.RESULT_DATA;
+  //         wallet_info[0].coin_code = 'USFCX';
+  //
+  //         draw_wallet_list_pop(wallet_info);
+  //
+  //       } else {
+  //         pop_alert(ret.RESULT_MESSAGE);
+  //       }
+  //
+  //     });
+  // }
+
+  $(document).ready(function() {
+    // get_wallet_list();
+    get_wallet_info(draw_wallet_list_pop);
+  });
+
+
+</script>
 </head>
 <body>
    <div class="container-md" id="container">
       <!-- 탑메뉴 -->
-      <nav class="navbar navbar-light bg-light" id="top_menu">
+      <nav class="navbar navbar-light" id="top" >
          <div class="container-fluid">
-           <a class="navbar-brand" href="#">LOTT WALLET</a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-             <span class="navbar-toggler-icon"></span>
+            <div class="container-fluid" >
+               <div class="row align-items-start">
+                 <div class="col-auto me-auto">
+                     <a class="navbar-brand" href="#">
+                        <div class="" id="user_login" style="">
+                        <img src="./resources/imgNew/logo.jpg" id="logo" alt="">
+                           Sooin Lee<br>
+                           <span style="font-size: 10px;">0x12893dd749...sdf2453d <img src="./img/copy.png" alt=""></span> 
+                        </div>
+                     </a>
+                  </div>
+            
+
+                  <div class="col-auto" id="top_menu">
+                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                     <span class="navbar-toggler-icon"></span>
+                  </div>
+               </div>
+            </div>
+
+            
+           <!-- 옵션메뉴 -->
            </button>
            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
              <div class="offcanvas-header">
@@ -164,6 +340,8 @@
            </div>
          </div>
        </nav>
+
+
       <!-- 카드 -->
       <!-- style="border: solid 1px black;" -->
       <div class="row" id="card-box" >
@@ -219,7 +397,7 @@
                <div  id="coin_name">
                   코인이름
                   <div id="transaction_amount">
-                     100000000000000000000000000코인개수
+                     1000000000000000000코인개수
                   </div>
                   <div id="transaction_date">
                      2022-01-12거래날짜
@@ -231,7 +409,7 @@
                <div  id="coin_name">
                   코인이름
                   <div id="transaction_amount">
-                     100000000000000000000000000코인개수
+                     1000000000000000코인개수
                   </div>
                   <div id="transaction_date">
                      2022-01-12거래날짜
@@ -243,7 +421,7 @@
                <div  id="coin_name">
                   코인이름
                   <div id="transaction_amount">
-                     100000000000000000000000000코인개수
+                     10000000000000000코인개수
                   </div>
                   <div id="transaction_date">
                      2022-01-12거래날짜
@@ -253,12 +431,13 @@
          
          </div>
      </div>
+   </div>
    <!-- 바텀네비 -->
    <footer class="container-md navbar-fixed-bottom" id="footer">
       <div class="row justify-content-md-center " id="bottom_group">
-         <div class="col" id="bottom">.col-6 .col-md-4</div>
-         <div class="col" id="bottom">.col-6 .col-md-4</div>
-         <div class="col" id="bottom">.col-6 .col-md-4</div>
+         <div class="col" id="bottom"><img src="./img/home.jpg" alt=""></div>
+         <div class="col" id="bottom"><img src="./img/QRcode.jpg" alt=""></div>
+         <div class="col" id="bottom"><img src="./img/Setting.jpg" alt=""></div>
       </div>
   
    </footer>
